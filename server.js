@@ -84,7 +84,7 @@ app.post("/", async function(req, res) {
         const token = jwt.sign({ email: user.email }, JWT_SECRET);
         if (res.status(201)) {
             res.redirect('/index');
-            console.log( user + 'login at' + dateTime)
+            console.log( user.email + 'login at' + dateTime)
             return console.log('Welcome back', email)
         } else {
             return res.json({ error: "error" });
@@ -219,12 +219,16 @@ app.get("/signup", function(req, res) {
 app.post("/signup", async function(req, res) {
     const { email, password, confirm_password } = req.body;
     const encryptedPassword = await bcrypt.hash(password, 10);
+    if(email === "null" ) {
+        return console.log('Email has not been filled')
+    }
+    else {
     if(password == confirm_password){
     try {
         const oldUser = await Note.findOne({ email });
         if (oldUser) {
             res.redirect('/signup');
-            return console.log('Sorry, this ' + req.body.email + ' has been exists');
+            return console.log('Sorry, this' + req.body.email + ' has been exists');
         }
         await Note.create({
         email,
@@ -239,7 +243,7 @@ app.post("/signup", async function(req, res) {
 } else {
     console.log('Wrong password');
     res.redirect('/signup');
-}
+}}
 })
 
 app.get("/shop", function(req, res) {
@@ -291,7 +295,7 @@ app.get('/upload', (req, res) => {
     imgModel.find({}, (err, items) => { 
         if (err) { 
             console.log(err); 
-            res.status(500).send('An error occurred', err); 
+            res.status(500).send('File cannot be uploaded', err); 
         } 
         else {
             res.render('pages/upload', { items: items }); 
