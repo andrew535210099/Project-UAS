@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const ejs = require('ejs');
+const joi = require('joi');
 const path = require('path'); 
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
@@ -69,15 +70,15 @@ app.listen(8000, function() {
     console.log("Server is running on port 8000");
 })
 
-app.get("/", function(req, res) {
+app.get("/login", function(req, res) {
     return res.render('pages/login');
 })
 
-app.post("/", async function(req, res) {
+app.post("/login", async function(req, res) {
     const { email, password } = req.body;
     const user = await Note.findOne({ email });
     if (!user) {
-        res.redirect('/');
+        res.redirect('/login');
         return console.log('User not found');
     }
     if (await bcrypt.compare(password, user.password)) {
@@ -91,7 +92,7 @@ app.post("/", async function(req, res) {
         }
     }
     console.log('Invalid Password')
-    res.redirect('/');
+    res.redirect('/login');
 })
 
 app.get("/forgotpass", function(req, res) {
@@ -235,7 +236,7 @@ app.post("/signup", async function(req, res) {
         password: encryptedPassword,
     }
     );
-    res.redirect('/')
+    res.redirect('/login')
     console.log('Email ' + email + ' has been successfully made')
 } catch (error) {
     res.send({ status: "error" });
