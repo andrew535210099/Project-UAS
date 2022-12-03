@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LOGIN</title>
+        <style>
+            input[type=button], input[type=submit], input[type=reset] {
+                background-color: #04AA6D;
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-decoration: none;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+        </style>
+        <link rel="stylesheet" href="../css/login.css">
+    </head>
+
+    <body>
+        <form class="login" method="post" action="/">
+            <center><h2 class="tulisan">Welcome to Earth.</h2></center>
+            <div class="field"><span class="fa fa-user"></span><input type="text" placeholder="Email" name="email"></div>
+            <div class="field"><span class="fa fa-lock"></span><input type="password" placeholder="Password" name="password"></div>
+            <div class="forgot-password"><a href="http://localhost:8000/forgotpass">Forgot password?</a></div>
+            <input type="submit" value="Submit">
+            <span class="login-form-copy">Or login with</span>
+            <div class="social-icons">
+                <div class="social-icon google"><span class="fa fa-google"><img src="../assets/gambar/bg/google.jpg" style="width: 40px;" > </span></div>
+                <div class="social-icon google"><span class="fa fa-google"><img src="../assets/gambar/bg/facebook.png" style="width: 40px;" > </span></div>
+                <div class="social-icon google"><span class="fa fa-google"><img src="../assets/gambar/bg/twitter.png" style="width: 40px;" > </span></div>
+            </div>
+            <span class="login-form-copy">Tidak punya akun?<a href="http://localhost:8000/signup" class="login-form_sign-up">Sign up</a> </span>
+        </form>
+    </body>
+</html>
