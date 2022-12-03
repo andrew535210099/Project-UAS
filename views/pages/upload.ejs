@@ -3,6 +3,17 @@
   <head>
     <title>Upload</title>
     <link rel="stylesheet" type="text/css" href="../css/upload css.css" />
+    <style>
+      button {
+                background-color: #04AA6D;
+                border: none;
+                color: white;
+                padding: 10px 20px;
+                text-decoration: none;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -10,7 +21,7 @@
         <center><h2>Upload Photo</h2></center>
       </div>
       <div class="kata">
-        <h2>"New Photo"</h2>
+        <center style="color:rgb(22, 121, 226);">"New Photo"</center>
       </div>
     
       <div class="kotak">
@@ -27,26 +38,23 @@
           <div class="row">
             <form action="/upload" method="POST" enctype="multipart/form-data"> 
               <div> 
-                  <label for="name">Image Title</label> 
-                  <input type="text" id="name" placeholder="Name" 
-                  value="" name="name" required> 
+                  <center><label for="name">Image Title</label></center> 
+                  <center><input type="text" id="name" placeholder="Name" 
+                    value="" name="name" required> </center>
               </div> 
   
               <div> 
-                  <label for="desc">Image Description</label> 
-                  <textarea id="desc" name="desc" value="" rows="2" 
-                  placeholder="Description" required> 
-                  </textarea> 
+                  <center><label for="desc">Image Description</label> </center>
+                  <center> <textarea id="desc" name="desc" value="" rows="1" placeholder="Description" required>  </textarea>  </center>
 
               </div> 
               <div> 
-                  <label for="image">Upload Image</label> 
-                  <input type="file" id="image" 
-                  name="image" value="" required> 
+                  <center><label for="image">Upload Image</label> </center>
+                  <center><input type="file" id="image" name="image" value="" required> </center>
               </div> 
   
               <div> 
-                  <button type="submit">Submit</button> 
+                  <center><button type="submit">Submit</button></center> 
               </div> 
         </div>
     </section>
