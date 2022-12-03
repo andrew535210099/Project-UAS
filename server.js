@@ -202,7 +202,7 @@ app.post("/index", async function(req, res) {
         post: title
     });
     res.redirect('/index')
-    console.log('Success');
+    console.log('Your status has been uploaded');
     }catch (error) {
     res.send({ status: "error" });
 } }
@@ -321,6 +321,7 @@ app.post('/upload', upload.single('image'), (req, res, next) => {
 app.get("/andri", function(req, res) {
     return res.render('pages/profileandri');
 })
+
 
 app.get("/ardan", function(req, res) {
     return res.render('pages/profileardan');
