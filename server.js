@@ -84,7 +84,8 @@ app.post("/", async function(req, res) {
         const token = jwt.sign({ email: user.email }, JWT_SECRET);
         if (res.status(201)) {
             res.redirect('/index');
-            return console.log('Welcome back', email )
+            console.log( user + 'login at' + dateTime)
+            return console.log('Welcome back', email)
         } else {
             return res.json({ error: "error" });
         }
@@ -228,8 +229,10 @@ app.post("/signup", async function(req, res) {
         await Note.create({
         email,
         password: encryptedPassword,
-    });
+    }
+    );
     res.redirect('/')
+    console.log('Email ' + email + ' has been successfully made')
 } catch (error) {
     res.send({ status: "error" });
 }
