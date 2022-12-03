@@ -203,7 +203,7 @@ app.post("/index", async function(req, res) {
     res.redirect('/index')
     console.log('Success');
     }catch (error) {
-    res.send({ status: "error" });
+        console.log(err);
 } }
 })
 
