@@ -31,6 +31,7 @@ mongoose.connect("mongodb+srv://Andrew:Mynameacp@cluster0.sqblysk.mongodb.net/Tu
 
 // create a data schema
 const notesSchema = new mongoose.Schema({
+    username: {type: String, unique: true},
     email: {type: String, unique: true},
     password: String, 
 },
@@ -218,12 +219,15 @@ app.get("/signup", function(req, res) {
 })
 
 app.post("/signup", async function(req, res) {
-    const { email, password, confirm_password } = req.body;
+    const { email, password, confirm_password, username } = req.body;
     const encryptedPassword = await bcrypt.hash(password, 10);
+    if(username === "") {
+        return console.log('Email has not been filled')
+    }
     if(email === "" ) {
         return console.log('Email has not been filled')
     }
-    else if (password === "") {
+    if (password === "") {
         return console.log('Password has not been filled')
     } else if (confirm_password === "" ){
         return console.log('Confirm Password has not been filled')
@@ -232,17 +236,24 @@ app.post("/signup", async function(req, res) {
     if(password == confirm_password){
     try {
         const oldUser = await Note.findOne({ email });
+        const oldUsername = await Note.findOne({ username });
         if (oldUser) {
             res.redirect('/signup');
-            return console.log('Sorry, this' + req.body.email + ' has been exists');
+            return console.log('Sorry, this ' + req.body.email + ' has been exists');
+        }
+        if (oldUsername) {
+            res.redirect('/signup');
+            return console.log('Sorry, this ' + username + ' has been exists');
         }
         await Note.create({
-        email,
-        password: encryptedPassword,
+            username,
+            email,
+            password: encryptedPassword,
     }
     );
     res.redirect('/login')
     console.log('Email ' + email + ' has been successfully made ')
+    console.log(username + ' has been successfully made');
 } catch (error) {
     res.send({ status: "error" });
 }
@@ -317,7 +328,7 @@ app.post('/upload', upload.single('image'), (req, res, next) => {
         desc: req.body.desc,
         img: {
             data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-            contentType: 'image/png/jpg/jpeg'
+            contentType: 'image/png'
         }
     }
     imgModel.create(obj, (err, item) => {
