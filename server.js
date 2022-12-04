@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const ejs = require('ejs');
+const joi = require('joi');
 const path = require('path'); 
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
@@ -69,29 +70,29 @@ app.listen(8000, function() {
     console.log("Server is running on port 8000");
 })
 
-app.get("/", function(req, res) {
+app.get("/login", function(req, res) {
     return res.render('pages/login');
 })
 
-app.post("/", async function(req, res) {
+app.post("/login", async function(req, res) {
     const { email, password } = req.body;
     const user = await Note.findOne({ email });
     if (!user) {
-        res.redirect('/');
+        res.redirect('/login');
         return console.log('User not found');
     }
     if (await bcrypt.compare(password, user.password)) {
         const token = jwt.sign({ email: user.email }, JWT_SECRET);
         if (res.status(201)) {
             res.redirect('/index');
-            console.log( user + 'login at' + dateTime)
+            console.log( user.email + 'login at' + dateTime)
             return console.log('Welcome back', email)
         } else {
             return res.json({ error: "error" });
         }
     }
     console.log('Invalid Password')
-    res.redirect('/');
+    res.redirect('/login');
 })
 
 app.get("/forgotpass", function(req, res) {
@@ -204,7 +205,7 @@ app.post("/index", async function(req, res) {
     res.redirect('/index')
     console.log('Your status has been uploaded');
     }catch (error) {
-    res.send({ status: "error" });
+        console.log(err);
 } }
 })
 
@@ -219,27 +220,42 @@ app.get("/signup", function(req, res) {
 app.post("/signup", async function(req, res) {
     const { email, password, confirm_password } = req.body;
     const encryptedPassword = await bcrypt.hash(password, 10);
+    if(email === "" ) {
+        return console.log('Email has not been filled')
+    }
+    else if (password === "") {
+        return console.log('Password has not been filled')
+    } else if (confirm_password === "" ){
+        return console.log('Confirm Password has not been filled')
+    }
+    else {
     if(password == confirm_password){
     try {
         const oldUser = await Note.findOne({ email });
         if (oldUser) {
             res.redirect('/signup');
-            return console.log('Sorry, this ' + req.body.email + ' has been exists');
+            return console.log('Sorry, this' + req.body.email + ' has been exists');
         }
         await Note.create({
         email,
         password: encryptedPassword,
     }
     );
+<<<<<<< HEAD
     res.redirect('/')
     console.log('Email ' + email + ' has been successfully made ')
+=======
+    res.redirect('/login')
+    console.log('Email ' + email + ' has been successfully made')
+>>>>>>> 2e19df11a2b83117f396476445893b30de312975
 } catch (error) {
     res.send({ status: "error" });
 }
-} else {
+} 
+else {
     console.log('Wrong password');
     res.redirect('/signup');
-}
+}}
 })
 
 app.get("/shop", function(req, res) {
@@ -291,7 +307,7 @@ app.get('/upload', (req, res) => {
     imgModel.find({}, (err, items) => { 
         if (err) { 
             console.log(err); 
-            res.status(500).send('An error occurred', err); 
+            res.status(500).send('File cannot be uploaded', err); 
         } 
         else {
             res.render('pages/upload', { items: items }); 
