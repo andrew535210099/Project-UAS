@@ -223,6 +223,11 @@ app.post("/signup", async function(req, res) {
     if(email === "" ) {
         return console.log('Email has not been filled')
     }
+    else if (password === "") {
+        return console.log('Password has not been filled')
+    } else if (confirm_password === "" ){
+        return console.log('Confirm Password has not been filled')
+    }
     else {
     if(password == confirm_password){
     try {
@@ -241,7 +246,8 @@ app.post("/signup", async function(req, res) {
 } catch (error) {
     res.send({ status: "error" });
 }
-} else {
+} 
+else {
     console.log('Wrong password');
     res.redirect('/signup');
 }}
