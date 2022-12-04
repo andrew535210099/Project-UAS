@@ -241,13 +241,10 @@ app.post("/signup", async function(req, res) {
         password: encryptedPassword,
     }
     );
-<<<<<<< HEAD
-    res.redirect('/')
-    console.log('Email ' + email + ' has been successfully made ')
-=======
+
     res.redirect('/login')
     console.log('Email ' + email + ' has been successfully made')
->>>>>>> 2e19df11a2b83117f396476445893b30de312975
+    
 } catch (error) {
     res.send({ status: "error" });
 }
