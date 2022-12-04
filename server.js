@@ -232,7 +232,7 @@ app.post("/signup", async function(req, res) {
     }
     );
     res.redirect('/')
-    console.log('Email ' + email + ' has been successfully made')
+    console.log('Email ' + email + ' has been successfully made ')
 } catch (error) {
     res.send({ status: "error" });
 }
