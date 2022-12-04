@@ -241,10 +241,8 @@ app.post("/signup", async function(req, res) {
         password: encryptedPassword,
     }
     );
-
     res.redirect('/login')
-    console.log('Email ' + email + ' has been successfully made')
-    
+    console.log('Email ' + email + ' has been successfully made ')
 } catch (error) {
     res.send({ status: "error" });
 }
@@ -304,9 +302,10 @@ app.get('/upload', (req, res) => {
     imgModel.find({}, (err, items) => { 
         if (err) { 
             console.log(err); 
-            res.status(500).send('File cannot be uploaded', err); 
+            res.status(500).send('Image cannot be uploaded', err); 
         } 
         else {
+            console.log('Image has been uploaded');
             res.render('pages/upload', { items: items }); 
         } 
     }); 
