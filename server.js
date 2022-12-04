@@ -60,7 +60,7 @@ const History = mongoose.model("UserPost");
 const db = mongoose.connection;
 db.once('open', () => {
     console.log('Connected to Mongoose server!');
-    console.log('Server start at ' , dateTime);
+    console.log('Server starts at ' , dateTime);
 });
 
 app.use(express.static('public'))
