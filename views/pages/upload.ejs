@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="../css/upload css.css" />
     <style>
       button {
-                background-color: #04AA6D;
+                background-color: rgb(17, 154, 239);
                 border: none;
                 color: white;
                 padding: 10px 20px;
@@ -13,6 +13,13 @@
                 margin: 4px 2px;
                 cursor: pointer;
             }
+      body { 
+        background-image: url('../assets/gambar/bg/filebg.jpg');
+        background-size: cover;
+      }
+      p {
+        color: rgb(0, 110, 255);
+      }
     </style>
   </head>
   <body>
@@ -21,7 +28,7 @@
         <center><h2>Upload Photo</h2></center>
       </div>
       <div class="kata">
-        <center style="color:rgb(22, 121, 226);">"New Photo"</center>
+        <center style="color:rgb(0, 0, 0)">"Ekspresikan post anda bersama Earth."</center>
       </div>
     
       <div class="kotak">
@@ -30,11 +37,8 @@
         </div>
       </div>
     
-      <p>Ekspresikan post anda bersama Earth.</p>
-    
       <div class="caption">
         <div class="isi">
-          <p>Deskripsi</p>
           <div class="row">
             <form action="/upload" method="post" enctype="multipart/form-data"> 
               <div> 

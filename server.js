@@ -221,15 +221,15 @@ app.get("/signup", function(req, res) {
 app.post("/signup", async function(req, res) {
     const { email, password, confirm_password, username } = req.body;
     const encryptedPassword = await bcrypt.hash(password, 10);
-    if(username === "") {
+    if(username === "" && !username) {
         return console.log('Email has not been filled')
     }
-    if(email === "" ) {
+    if(email === "" && !email) {
         return console.log('Email has not been filled')
     }
-    if (password === "") {
+    if (password === "" && !password) {
         return console.log('Password has not been filled')
-    } else if (confirm_password === "" ){
+    } else if (confirm_password === "" && !confirm_password ){
         return console.log('Confirm Password has not been filled')
     }
     else {
@@ -313,10 +313,9 @@ app.get('/upload', (req, res) => {
     imgModel.find({}, (err, items) => { 
         if (err) { 
             console.log(err); 
-            res.status(500).send('Image cannot be uploaded', err); 
+            res.status(500).send('File cannot be uploaded', err); 
         } 
         else {
-            console.log('Image has been uploaded');
             res.render('pages/upload', { items: items }); 
         } 
     }); 

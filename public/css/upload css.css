@@ -1,7 +1,6 @@
 body {
     margin: 0px;
     padding: 0px;
-    background: #dedede;
     display: flex;
     height: 100%;
     width: 100%;
@@ -14,7 +13,7 @@ body {
     width: 60%;
     overflow: hidden;
     min-height: 250px;
-    background: white;
+    background: rgb(12, 231, 255);
     margin: auto;
     border-radius: 50px;
     box-shadow: 1px 1px 3px black;
@@ -24,7 +23,7 @@ body {
     width: 50%;
     overflow: hidden;
     min-height: 200px;
-    background: white;
+    background: rgb(188, 255, 247);
     margin: auto;
     border-radius: 4px;
     box-shadow: 1px 1px 3px black;
@@ -34,7 +33,7 @@ body {
     width: 50%;
     overflow: hidden;
     min-height: 200px;
-    background: white;
+    background: rgb(0, 255, 255);
     margin: auto;
     margin-bottom: 20px;
     border-radius: 4px;
@@ -45,10 +44,10 @@ body {
     width: 40%;
     overflow: hidden;
     min-height: 100px;
-    background: white;
+    background: rgb(10, 207, 228);
     margin: auto;
     border-radius: 4px;
-    box-shadow: 1px 1px 3px black;
+    box-shadow: 2px 2px 2px 2px rgb(2, 188, 255);
   }
   
   .image {
@@ -89,7 +88,7 @@ body {
     color: white;
   }
   p {
-    color: grey;
+    color: rgb(7, 245, 245);
     font-size: 12px;
     text-align: center;
   }
