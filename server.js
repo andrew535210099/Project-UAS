@@ -338,7 +338,7 @@ app.post('/upload', upload.single('image'), (req, res, next) => {
             res.redirect('/upload');
         }
     });
-});
+}); 
 
 app.get("/andri", function(req, res) {
     return res.render('pages/profileandri');

@@ -30,7 +30,7 @@ body {
   }
   
   .caption .isi .isi-cap .ketik {
-    width: 50%;
+    width: 50%; 
     overflow: hidden;
     min-height: 200px;
     background: rgb(0, 255, 255);
