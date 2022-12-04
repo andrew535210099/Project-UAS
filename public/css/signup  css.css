@@ -59,7 +59,7 @@ body{
 }
 
 .form-control.success i.fa-check-circle{
-    color:#2ecc71;
+    color:#16dcff;
     visibility: visible;
 }
 
@@ -100,7 +100,7 @@ body{
 }
 
 .form-control.success input{
-    border-color: #2ecc71;
+    border-color: #005eff;
 }
 
 .form-control.error input{
