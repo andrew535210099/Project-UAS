@@ -74,11 +74,11 @@ function setErrorFor(input, message){
 function matchPassword(checkInputs) {  
     var password = document.getElementById("password").value;  
     var password2 = document.getElementById("password2").value;  
-    if(password === password2)  
-    {   
-        alert("Password created successfully");  
-    }  
-    else {  
-        alert("Passwords did not match");  
-    }
+    // if(password === password2)  
+    // {   
+    //     alert("Password created successfully");  
+    // }  
+    // else {  
+    //     alert("Passwords did not match");  
+    // }
 }

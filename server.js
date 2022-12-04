@@ -222,7 +222,7 @@ app.post("/signup", async function(req, res) {
     const { email, password, confirm_password, username } = req.body;
     const encryptedPassword = await bcrypt.hash(password, 10);
     if(username === "" && !username) {
-        return console.log('Email has not been filled')
+        return console.log('Username has not been filled')
     }
     if(email === "" && !email) {
         return console.log('Email has not been filled')
@@ -327,7 +327,7 @@ app.post('/upload', upload.single('image'), (req, res, next) => {
         desc: req.body.desc,
         img: {
             data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-            contentType: 'image/png'
+            contentType: 'image/png/video/mp4'
         }
     }
     imgModel.create(obj, (err, item) => {
