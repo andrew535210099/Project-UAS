@@ -6,13 +6,15 @@
         <title> SIGN UP </title>
         <style>
             input[type=button], input[type=submit], input[type=reset] {
-                background-color: #04AA6D;
+                background-color: #1793ff;
                 border: none; 
                 color: white;
+                
                 padding: 16px 32px;
                 text-decoration: none;
                 margin: 4px 2px;
                 cursor: pointer;
+                margin-left:7px;
             }
 
             body {
@@ -24,35 +26,39 @@
     </head>
 
     <body>
-        <div class="container">
+        <div class="container" >
             <div class="header">
                 <center><img src="../assets/gambar/logo/logo real.jpeg" style="width: 70px;" class="card-img-top" alt=" "></center>
                 <center><h2>SIGN UP</h2></center>
             </div>
 
         <form action = "/signup" class = "form-control" method = "post" >
-            <label>Username</label>
-            <input type="text" placeholder="Input Username" name="username" width:50px height:20px >
+            <br>
+            <label>&nbsp;&nbsp;Username</label>
+            <input type="text" class="test" placeholder="Input Username" name="username" width:50px height:20px >
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small></small>
 
-            <label>Email</label>
-            <input type="email" placeholder="Input email" id="email" name="email" width:50px height:20px>
+            <label>&nbsp;&nbsp;Email</label>
+            <input type="email" class = "test" placeholder="Input email" id="email" name="email" width:50px height:20px>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small></small>
 
-            <label>Password</label>
-            <input type="password" placeholder="Input Password" id="password" name="password">
+            <label>&nbsp;&nbsp;Password</label>
+            <input type="password" class="test" placeholder="Input Password" id="password" name="password">
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
+            <br>
 
-            <label>Password check</label>
-            <input type="password" placeholder="Confirm Password" id="password2" name="confirm_password">
+            <label>&nbsp;&nbsp;Password check</label>
+            <input type="password" class = "test" placeholder="Confirm Password" id="password2" name="confirm_password">
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small></small>
+            <br>
+            <br>
             <input type="submit" value="Submit" onclick="matchPassword()"> 
         </form>
         </div>
