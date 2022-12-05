@@ -55,7 +55,8 @@ body{
     font-family: 'Courier New', Courier, monospace;
     font-size: 14px;
     padding: 10px;
-    width: 100%;
+    width: 95%;
+    margin-left: 7px;
 }
 
 .form-control.success i.fa-check-circle{
@@ -108,5 +109,5 @@ body{
 }
 
 .button{
-    color: black;
+    color: black;
 }
