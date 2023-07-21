@@ -71,11 +71,11 @@ app.listen(8000, function() {
     console.log("Server is running on port 8000");
 })
 
-app.get("/login", function(req, res) {
+app.get("/", function(req, res) {
     return res.render('pages/login');
 })  
 
-app.post("/login", async function(req, res) {
+app.post("/", async function(req, res) {
     const { email, password } = req.body;
     const user = await Note.findOne({ email });
     if (!user) {
