@@ -73,7 +73,7 @@ app.listen(8000, function() {
 
 app.get("/login", function(req, res) {
     return res.render('pages/login');
-})
+})  
 
 app.post("/login", async function(req, res) {
     const { email, password } = req.body;
