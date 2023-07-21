@@ -6,18 +6,14 @@
 
 body{
     box-sizing: border-box;
-    background-image: url('gambar/bg/bg\ gradasi.jpeg');
     display: flex;
     justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
-    background-position: center;
-    background-size: cover;
 }
-
+  
 *{
     margin: 0;
     padding: 0;
-    user-select: none;
 }
 
 .login{

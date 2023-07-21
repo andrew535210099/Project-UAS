@@ -411,7 +411,7 @@ main .container .left .profile{
 }
 
 .middle .stories .story:nth-child(1){
-    background: url("gambar/profile/peter.jpeg")
+    background: url("../gambar/profile/peter.jpeg")
     no-repeat center center/cover;
 }
 
@@ -687,6 +687,11 @@ main .container .right{
     font-weight: normal;
     text-transform: uppercase;
     transition: all 0.2s ease-in-out;
+}
+
+.submitt{
+    background-color: rgb(255, 255, 255);
+    color:rgb(122, 122, 253);
 }
 
 .btn:hover {
