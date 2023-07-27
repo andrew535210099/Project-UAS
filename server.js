@@ -68,7 +68,7 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: true}))
 
 app.use(function(req, res, next) {
-    res.status(404).render('pages/404');
+    res.status(404).render('pages/login');
   });
 
   
@@ -77,10 +77,6 @@ app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
   
-
-app.get("/", function(req, res) {
-    return res.render('pages/login');
-})  
 
 app.post("/", async function(req, res) {
     const { email, password } = req.body;
