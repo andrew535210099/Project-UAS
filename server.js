@@ -67,9 +67,16 @@ app.use(express.static('public'))
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: true}))
 
-app.listen(8000, function() {
-    console.log("Server is running on port 8000");
-})
+app.use(function(req, res, next) {
+    res.status(404).render('pages/404');
+  });
+
+  
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
+  
 
 app.get("/", function(req, res) {
     return res.render('pages/login');
