@@ -99,7 +99,7 @@ app.post("/", async function(req, res) {
     const { email, password } = req.body;
     const user = await Note.findOne({ email });
     if (!user) {
-        res.redirect('/login');
+        res.redirect('/');
         return console.log('User not found');
     }
     if (await bcrypt.compare(password, user.password)) {
@@ -113,7 +113,7 @@ app.post("/", async function(req, res) {
         }
     }
     console.log('Invalid Password')
-    res.redirect('/login');
+    res.redirect('/');
 })
 
 app.get("/forgotpass", function(req, res) {
@@ -207,10 +207,16 @@ app.post("/forgotpass/:password/:token", async (req, res) => {
     }
 });
 
-
-app.get("/index", function(req, res) {
-    return res.render('pages/index');
-})
+app.get('/index', async (req, res) => {
+    try {
+      const filePath = path.join(__dirname, 'views', 'pages', 'index.ejs');
+      const html = await ejs.renderFile(filePath, { /* data to pass to the EJS template */ });
+      res.send(html);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
 app.post("/index", async function(req, res) {
     const { title } = req.body;
@@ -230,13 +236,28 @@ app.post("/index", async function(req, res) {
 } }
 })
 
-app.get("/explore", function(req, res) {
-    return res.render('pages/explore');
-})
 
-app.get("/signup", function(req, res) {
-    return res.render('pages/signup');
-})
+app.get('/explore', async (req, res) => {
+    try {
+      const filePath = path.join(__dirname, 'views', 'pages', 'explore.ejs');
+      const html = await ejs.renderFile(filePath, { /* data to pass to the EJS template */ });
+      res.send(html);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+
+app.get('/signup', async (req, res) => {
+    try {
+      const filePath = path.join(__dirname, 'views', 'pages', 'signup.ejs');
+      const html = await ejs.renderFile(filePath, { /* data to pass to the EJS template */ });
+      res.send(html);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
 app.post("/signup", async function(req, res) {
     const { email, password, confirm_password, username } = req.body;
@@ -271,7 +292,7 @@ app.post("/signup", async function(req, res) {
             password: encryptedPassword,
     }
     );
-    res.redirect('/login')
+    res.redirect('/')
     console.log('Email ' + email + ' has been successfully made ')
     console.log(username + ' has been successfully made');
 } catch (error) {
@@ -284,29 +305,77 @@ else {
 }}
 })
 
-app.get("/shop", function(req, res) {
-    return res.render('pages/shop');
-})
+app.get('/shop', async (req, res) => {
+    try {
+      const filePath = path.join(__dirname, 'views', 'pages', 'shop.ejs');
+      const html = await ejs.renderFile(filePath, { /* data to pass to the EJS template */ });
+      res.send(html);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
-app.get("/service", function(req, res) {
-    return res.render('pages/service');
-})
+
+app.get('/service', async (req, res) => {
+    try {
+      const filePath = path.join(__dirname, 'views', 'pages', 'service.ejs');
+      const html = await ejs.renderFile(filePath, { /* data to pass to the EJS template */ });
+      res.send(html);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
 app.get("/history", function(req, res) {
     return res.render('pages/history');
 })
 
-app.get("/peter", function(req, res) {
-    return res.render('pages/peter');
-})
+app.get('/history', async (req, res) => {
+    try {
+      const filePath = path.join(__dirname, 'views', 'pages', 'history.ejs');
+      const html = await ejs.renderFile(filePath, { /* data to pass to the EJS template */ });
+      res.send(html);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
-app.get("/andrew", function(req, res) {
-    return res.render('pages/andrew');
-})
 
-app.get("/explore", function(req, res) {
-    return res.render('pages/explore');
-})
+app.get('/peter', async (req, res) => {
+    try {
+      const filePath = path.join(__dirname, 'views', 'pages', 'peter.ejs');
+      const html = await ejs.renderFile(filePath, { /* data to pass to the EJS template */ });
+      res.send(html);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+
+app.get('/andrew', async (req, res) => {
+    try {
+      const filePath = path.join(__dirname, 'views', 'pages', 'andrew.ejs');
+      const html = await ejs.renderFile(filePath, { /* data to pass to the EJS template */ });
+      res.send(html);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+
+app.get('/explore', async (req, res) => {
+    try {
+      const filePath = path.join(__dirname, 'views', 'pages', 'explore.ejs');
+      const html = await ejs.renderFile(filePath, { /* data to pass to the EJS template */ });
+      res.send(html);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
 var storage1 = multer.diskStorage({ 
     destination: (req, file, cb) => { 
@@ -329,17 +398,21 @@ var storage2 = multer.diskStorage({
 var upload = multer({ storage: storage1 });
 var uploadvideo = multer({ storage: storage2 });
 
-app.get('/upload', (req, res) => { 
-    imgModel.find({}, (err, items) => { 
+app.get('/upload', async (req, res) => { 
+    imgModel.find({}, async (err, items) => { 
         if (err) { 
             console.log(err); 
             res.status(500).send('File cannot be uploaded', err); 
         } 
         else {
-            res.render('pages/upload', { items: items }); 
+            const filePath = path.join(__dirname, 'views', 'pages', 'upload.ejs');
+            const html = await ejs.renderFile(filePath, { /* data to pass to the EJS template */ });
+            res.send(html);
         } 
     }); 
 });
+
+
 
 app.post('/upload', upload.single('image'), (req, res, next) => {
     var obj = {
@@ -360,27 +433,51 @@ app.post('/upload', upload.single('image'), (req, res, next) => {
     });
 }); 
 
-app.get("/andri", function(req, res) {
-    return res.render('pages/profileandri');
-})
+app.get('/andri', async (req, res) => {
+    try {
+      const filePath = path.join(__dirname, 'views', 'pages', 'andri.ejs');
+      const html = await ejs.renderFile(filePath, { /* data to pass to the EJS template */ });
+      res.send(html);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
 
-app.get("/ardan", function(req, res) {
-    return res.render('pages/profileardan');
-})
+app.get('/ardan', async (req, res) => {
+    try {
+      const filePath = path.join(__dirname, 'views', 'pages', 'ardan.ejs');
+      const html = await ejs.renderFile(filePath, { /* data to pass to the EJS template */ });
+      res.send(html);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
-app.get("/profile1", function(req, res) {
-    return res.render('pages/profile1');
-})
+
+app.get('/profile1', async (req, res) => {
+    try {
+      const filePath = path.join(__dirname, 'views', 'pages', 'profile1.ejs');
+      const html = await ejs.renderFile(filePath, { /* data to pass to the EJS template */ });
+      res.send(html);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
 app.get('/uploadvideo', (req, res) => { 
-    videoModel.find({}, (err, items) => { 
+    videoModel.find({}, async (err, items) => { 
         if (err) { 
             console.log(err); 
             res.status(500).send('An error occurred', err); 
         } 
         else {
-            res.render('pages/uploadvideo', { items: items }); 
+            const filePath = path.join(__dirname, 'views', 'pages', 'profile1.ejs');
+         const html = await ejs.renderFile(filePath, { /* data to pass to the EJS template */ });
+            res.send(html);
         } 
     }); 
 });
