@@ -63,14 +63,30 @@ db.once('open', () => {
     console.log('Server starts at ' , dateTime);
 });
 
-app.use(express.static('public'))
+// app.use(express.static('public'))
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: true}))
+app.use(express.static(path.join(__dirname, 'public')));
+
+// app.get('/', (req, res) => {
+//     res.send('Hello, world!');
+//   });
+
+// app.get("/", function(req, res) {
+//     return res.render('pages/login');
+// })
 
 
-app.get("/", function(req, res) {
-    return res.render('pages/login');
-})
+app.get('/', async (req, res) => {
+    try {
+      const filePath = path.join(__dirname, 'views', 'pages', 'login.ejs');
+      const html = await ejs.renderFile(filePath, { /* data to pass to the EJS template */ });
+      res.send(html);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
 const port = process.env.PORT || 3000;
 
