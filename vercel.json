@@ -1,16 +1,20 @@
 {
-   "version": 2,
-   "builds": [
-     {
-       "src": "server.js",
-       "use": "@vercel/node"
-     }
-   ],
-   "routes": [
-     {
-       "src": "/(.*)",
-       "dest": "server.js"
-     }
-   ]
- }
- 
+  "version": 2,
+  "builds": [
+    { "src": "server.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/favicon.ico", "dest": "/public/favicon.ico" },
+    { "src": "/static/(.*)", "dest": "/public/$1" },
+    { "src": "/uploads/(.*)", "dest": "/uploads/$1" },
+    { "src": "/pages/(.*)", "dest": "/public/views/pages/$1.html" }, 
+    { "src": "/(.*)", "dest": "/server.js" }
+  ],
+  "rewrites": [
+    { "source": "/:path*", "destination": "/server.js" }
+  ],
+  "env": {
+    "MONGODB_URI": "@my-mongodb-uri",
+    "NODE_ENV": "production"
+  }
+}
